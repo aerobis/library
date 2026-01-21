@@ -1,26 +1,64 @@
-const myLibrary = [];
+document.addEventListener("DOMContentLoaded", () => {
+    const myLibrary = [];
 
-function Book(name, author, pages, read_status, id){
-    if(!new.target){
-        throw error("Error! Please re-do action!");
+    /* CONSTRUCTOR */
+    function Book(name, author, pages, read_status, id){
+        if(!new.target){
+            throw new Error("Error! Please re-do action!");
+        }
+        
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.read_status = read_status;
+        this.id = crypto.randomUUID();
     }
-    
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.read_status = read_status;
-    this.id = id;
-}
 
-function addBookToLibrary(){
-    let name;
-    let author;
-    let pages;
-    let read_status;
-    let id = crypto.randomUUID();
+    /* ADDING FUNCTION */
+    function addBookToLibrary(name, author, pages, read_status){
+        let newBook = new Book(name, author, pages, read_status);
 
-    let newBook = new Book(name, author, pages, read_status, id);
+        myLibrary.push(newBook);
+        displayBooks();
+    }
 
-    myLibrary.push(newBook);
-}
+    /* CARD DISPLAY FUNCTION */
+    function displayBooks(){
+        let container = document.querySelector(".book-section");
+        container.innerHTML = "";
 
+        myLibrary.forEach(book => {
+            let card = document.createElement("div");
+            card.classList.add("dynamic-card");
+            card.dataset.id = book.id;
+
+            let name = document.createElement("h3");
+            name.textContent = book.name;
+
+            let author = document.createElement("p");
+            author.textContent = `by ${book.author}`;
+
+            let pages = document.createElement("p");
+            pages.textContent = `${book.pages} pages`;
+
+            let read_status = document.createElement("p");
+            read_status.textContent = `Read: ${book.read_status}`;
+
+            /*EDIT BUTTON*/
+            let editBtn = document.createElement("button");
+            editBtn.textContent = "Edit";
+            editBtn.addEventListener("click", ()=> editBook(book.id));
+
+            /*DELETE BUTTON*/
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.addEventListener("click", ()=> deleteBook(book.id));
+
+            card.append(name, author, pages, read_status, editBtn, deleteBtn);
+            container.appendChild(card);
+        });
+    }
+
+    addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", "180", "Yes");
+    console.log(myLibrary);
+});
