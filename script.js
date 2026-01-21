@@ -59,6 +59,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /*EDIT AND DELETE BUTTONS*/
+    function editBook(id){
+        const book = myLibrary.find(book => book.id === id);
+        if(!book) return;
+    };
+
+    function deleteBook(id){
+        const index = myLibrary.find(book => book.id === id);
+        if(index !== -1){
+            myLibrary.splice(index, 1);
+            displayBooks();
+        }
+    };
+
+
+    /*ADDING NEW BOOK BUTTON*/
+    let addBtn = document.querySelector("#add-book-button");
+    addBtn.addEventListener("click", )
+
     addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", "180", "Yes");
     console.log(myLibrary);
 });
