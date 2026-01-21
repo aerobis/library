@@ -87,6 +87,27 @@ document.addEventListener("DOMContentLoaded", () => {
         bookModal.close();
     })
 
+    /*SUBMITTING THE FORM*/
+    let submitBtn = document.querySelector("#submit-book");
+    submitBtn.addEventListener("click", (event)=>{
+        event.preventDefault();
+
+        let bookTitle = document.querySelector("#bookTitle");
+        let bookAuthor = document.querySelector("#bookAuthor");
+        let bookPages = document.querySelector("#bookPages");
+        let bookRead = document.querySelector("#bookRead");
+        if(bookRead.checked){
+            bookRead.value = "Yes";
+        }else{
+            bookRead.value = "No";
+        }
+
+        addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
+
+        bookModal.close();
+    })
+
+
     addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", "180", "Yes");
     console.log(myLibrary);
 });
