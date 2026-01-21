@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const myLibrary = [];
+    let storedId = 0;
+
+    /*FOR THE FORM MODAL*/
+    let modalMode = "add"; 
+    let modalContainer = document.querySelector("#book-form");
+    let modalHeader = modalContainer.querySelector("h3");
 
     /* CONSTRUCTOR */
     function Book(name, author, pages, read_status, id){
@@ -63,10 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
     function editBook(id){
         const book = myLibrary.find(book => book.id === id);
         if(!book) return;
+        storedId = id;
+
+        modalMode = "edit";
+        modalHeader.textContent = "Edit existing Book";
+        submitBtn.textContent = "Edit Book";
+        bookModal.showModal();
     };
 
     function deleteBook(id){
-        const index = myLibrary.find(book => book.id === id);
+        const index = myLibrary.findIndex(book => book.id === id);
         if(index !== -1){
             myLibrary.splice(index, 1);
             displayBooks();
@@ -78,8 +90,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let addBtn = document.querySelector("#add-book-button");
     let bookModal = document.querySelector("#book-form-container");
     let closeModalBtn = document.querySelector("#close-modal");
+    let submitBtn = document.querySelector("#submit-book");
 
     addBtn.addEventListener("click", ()=>{
+        modalMode = "add";
+        modalHeader.textContent = "Add new Book";
+        submitBtn.textContent = "Add Book";
         bookModal.showModal();
     })
 
@@ -87,12 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
         bookModal.close();
     })
 
-    /*SUBMITTING THE FORM*/
-    let submitBtn = document.querySelector("#submit-book");
+    /* SUBMITTING THE BOOK */
     submitBtn.addEventListener("click", (event)=>{
         event.preventDefault();
 
-        let bookTitle = document.querySelector("#bookTitle");
+        let bookName = document.querySelector("#bookName");
         let bookAuthor = document.querySelector("#bookAuthor");
         let bookPages = document.querySelector("#bookPages");
         let bookRead = document.querySelector("#bookRead");
@@ -102,9 +117,33 @@ document.addEventListener("DOMContentLoaded", () => {
             bookRead.value = "No";
         }
 
-        addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
+        /*IF ADD BOOK BUTTON IS CLICKED*/
+        if(modalMode == "add"){
+            addBookToLibrary(bookName.value, bookAuthor.value, bookPages.value, bookRead.value);
+            bookModal.close();
+        }
 
-        bookModal.close();
+        /*IF EDIT BUTTON IS CLICKED*/
+        if(modalMode == "edit"){
+            let book = myLibrary.find(book => book.id === storedId);
+
+            /*IF ANY FIELD IS EMPTY, DON'T CHANGE IT.*/
+            if(bookName.value != ""){
+                book.name = bookName.value;
+            }
+            if(bookAuthor.value != ""){
+                book.author = bookAuthor.value;
+            }
+            if(!isNaN(parseFloat(bookPages.value))){
+                book.pages = bookPages.value;
+            }
+            if(bookRead.value != ""){
+                book.read_status = bookRead.value;
+            }
+
+            bookModal.close();
+            displayBooks();
+        }
     })
 
 
