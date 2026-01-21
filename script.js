@@ -76,7 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*ADDING NEW BOOK BUTTON*/
     let addBtn = document.querySelector("#add-book-button");
-    addBtn.addEventListener("click", )
+    let bookModal = document.querySelector("#book-form-container");
+    let closeModalBtn = document.querySelector("#close-modal");
+
+    addBtn.addEventListener("click", ()=>{
+        bookModal.showModal();
+    })
+
+    closeModalBtn.addEventListener("click", ()=>{
+        bookModal.close();
+    })
 
     addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", "180", "Yes");
     console.log(myLibrary);

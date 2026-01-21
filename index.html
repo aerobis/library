@@ -9,30 +9,36 @@
 </head>
 <body>
     <div class="page-wrapper">
-            <div class="header">
-                CONCEPTUAL LIBRARY
+        <div class="header">
+            CONCEPTUAL LIBRARY
+        </div>
+
+        <div class="main-page">
+            <div class="book-section">
+                <!-- Content dynamically added by script.js -->
             </div>
 
-            <div class="main-page">
-                <div class="book-section">
-                    <!-- Content dynamically added by script.js -->
-                </div>
+            <div class="button-section">
+                <button id="add-book-button" class="non-card-buttons">ADD BOOK</button>
 
-                <div class="button-section">
-                    <button id="add-book-button" class="non-card-buttons">ADD BOOK</button>
-                    <div id="book-form-container" style="display:none;">
-                        <form action="#" id="book-form">
-                            <input type="text" id="title" name="title" placeholder="Title">
-                            <input type="text" id="author" name="author" placeholder="Author">
-                            <input type="number" id="pages" name="pages" placeholder="Pages">
-                            <label>
-                                Read? <input type="checkbox" id="read_status" name="read_status">
-                            </label>
-                            <button type="submit" class="card-buttons">SUBMIT</button>
-                        </form>
-                    </div>
-                </div>
+                <dialog id="book-form-container">
+                    <form action="#" id="book-form">
+                        <h3>Add a new Book</h3>
+                        <input type="text" id="bookTitle" placeholder="Title" required>
+                        <input type="text" id="bookAuthor" placeholder="Author" required>
+                        <input type="number" id="bookPages" placeholder="Pages" required>
+                        <label>
+                        Read? <input type="checkbox" id="bookRead">
+                        </label>
+                        <div>
+                        <button type="submit" id="submit-book">Add Book</button>
+                        <button type="button" id="close-modal">Cancel</button>
+                        </div>
+                    </form>
+                </dialog>
+                
             </div>
+        </div>
     </div>
 </body>
 </html>
