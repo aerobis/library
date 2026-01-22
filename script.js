@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* CARD DISPLAY FUNCTION */
     function displayBooks(){
-        let container = document.querySelector(".book-section");
+        let container = document.querySelector(".main-page");
         container.innerHTML = "";
 
         myLibrary.forEach(book => {
@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /*ADDING NEW BOOK BUTTON*/
     let addBtn = document.querySelector("#add-book-button");
     let bookModal = document.querySelector("#book-form-container");
+    console.log(bookModal);
     let closeModalBtn = document.querySelector("#close-modal");
     let submitBtn = document.querySelector("#submit-book");
 

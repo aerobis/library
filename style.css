@@ -43,11 +43,12 @@ body{
     border: 0.3px solid black;
     background-color: var(--primary-color);
 
-    padding: 5px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 15px;
     font-family: "Rubik";
     font-size: clamp(1rem, 1.5rem, 1.8rem);
     font-weight: bold;
@@ -62,19 +63,13 @@ body{
     background-color: var(--secondary-color);
 
     display: grid;
-    grid-template-columns: 1fr 0.3fr;
-    grid-auto-flow: columns;
-    padding: 5px;
-}
-
-.book-section{
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 0.5rem));
     grid-template-rows: repeat(auto-fit, minmax(140px, 0.1rem));
     grid-auto-flow: rows;
-    padding: 5px;
+    padding: 15px;
     gap: 15px;
 }
+
 
 /*CARDS IN BOOK SECTION*/
 .dynamic-card{

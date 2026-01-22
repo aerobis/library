@@ -11,32 +11,29 @@
     <div class="page-wrapper">
         <div class="header">
             CONCEPTUAL LIBRARY
+            <button id="add-book-button" class="primary-buttons">ADD BOOK</button>
         </div>
 
         <div class="main-page">
-            <div class="book-section">
-                <!-- Content dynamically added by script.js -->
-            </div>
+            <!-- Content dynamically added by script.js -->
+        </div>
 
-            <div class="button-section">
-                <button id="add-book-button" class="primary-buttons">ADD BOOK</button>
-
-                <dialog id="book-form-container">
-                    <form action="#" id="book-form">
-                        <h3>Add a new Book</h3>
-                        <input type="text" id="bookName" placeholder="Title" required>
-                        <input type="text" id="bookAuthor" placeholder="Author" required>
-                        <input type="number" id="bookPages" placeholder="Pages" required>
-                        <label>
-                        Read? <input type="checkbox" id="bookRead">
-                        </label>
-                        <div>
-                        <button type="submit" id="submit-book" class="form-buttons">Add Book</button>
-                        <button type="button" id="close-modal" class="form-buttons">Cancel</button>
-                        </div>
-                    </form>
-                </dialog>
-            </div>
+        <div class="modal-container">
+            <dialog id="book-form-container">
+            <form action="#" id="book-form">
+                <h3>Add a new Book</h3>
+                <input type="text" id="bookName" placeholder="Title" required>
+                <input type="text" id="bookAuthor" placeholder="Author" required>
+                <input type="number" id="bookPages" placeholder="Pages" required>
+                <label>
+                Read? <input type="checkbox" id="bookRead">
+                </label>
+                <div>
+                <button type="submit" id="submit-book" class="form-buttons">Add Book</button>
+                <button type="button" id="close-modal" class="form-buttons">Cancel</button>
+                </div>
+            </form>
+        </dialog>
         </div>
     </div>
 </body>
