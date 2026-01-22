@@ -93,15 +93,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*TOGGLE BUTTON*/
     function toggleRead(id){
-        let book = myLibrary.find(book => book.id === storedId);
+        let book = myLibrary.find(book => book.id === id);
         if(!book) return;
         storedId = id;
         
-        console.log(book);
-        console.log(storedId);
 
-        if(book.read_status == "Yes"){
-            book.read_status == "No";
+        if(book.read_status == "Yes"){ 
+            book.read_status = "No";
+            displayBooks();
+        }else{
+            book.read_status = "Yes";
             displayBooks();
         }
     }
