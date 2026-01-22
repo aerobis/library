@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const myLibrary = [];
-    let storedId = 0;
+    let storedId = 0; /*TO KEEP TRACK OF WHAT BOOK CARD WAS CLICKED*/
+    let readStatus = "Read"; /*DEFAULT BOOK_READ STATUS*/
 
     /*FOR THE FORM MODAL*/
     let modalMode = "add"; 
@@ -60,7 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
             deleteBtn.textContent = "Delete";
             deleteBtn.addEventListener("click", ()=> deleteBook(book.id));
 
-            card.append(name, author, pages, read_status, editBtn, deleteBtn);
+            /*TOGGLE READ STATUS*/
+            let toggleBtn = document.createElement("button");
+            toggleBtn.textContent = "Read Status"
+            toggleBtn.addEventListener("click", () => toggleRead(book.id));
+
+            card.append(name, author, pages, read_status, editBtn, deleteBtn, toggleBtn);
             container.appendChild(card);
         });
     }
@@ -84,6 +90,21 @@ document.addEventListener("DOMContentLoaded", () => {
             displayBooks();
         }
     };
+
+    /*TOGGLE BUTTON*/
+    function toggleRead(id){
+        let book = myLibrary.find(book => book.id === storedId);
+        if(!book) return;
+        storedId = id;
+        
+        console.log(book);
+        console.log(storedId);
+
+        if(book.read_status == "Yes"){
+            book.read_status == "No";
+            displayBooks();
+        }
+    }
 
 
     /*ADDING NEW BOOK BUTTON*/
@@ -150,3 +171,4 @@ document.addEventListener("DOMContentLoaded", () => {
     addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", "180", "Yes");
     console.log(myLibrary);
 });
+
