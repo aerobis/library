@@ -9,17 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
     let modalHeader = modalContainer.querySelector("h3");
 
     /* CONSTRUCTOR */
-    function Book(name, author, pages, read_status, id){
-        if(!new.target){
-            throw new Error("Error! Please re-do action!");
-        }
+    // function Book(name, author, pages, read_status, id){
+    //     if(!new.target){
+    //         throw new Error("Error! Please re-do action!");
+    //     }
         
-        this.name = name;
-        this.author = author;
-        this.pages = pages;
-        this.read_status = read_status;
-        this.id = crypto.randomUUID();
-    }
+    //     this.name = name;
+    //     this.author = author;
+    //     this.pages = pages;
+    //     this.read_status = read_status;
+    //     this.id = crypto.randomUUID();
+    // }
+
+    class Book{
+        constructor(name, author, pages, read_status, id){
+            this.name = name;
+            this.author = author;
+            this.pages = pages;
+            this.read_status = read_status;
+            this.id = crypto.randomUUID();
+        }
+    };
 
     /* ADDING FUNCTION */
     function addBookToLibrary(name, author, pages, read_status){
