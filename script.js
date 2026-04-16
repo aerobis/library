@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let modalHeader = modalContainer.querySelector("h3");
 
     /* CONSTRUCTOR */
-    function Book(name, author, pages, read_status, id){
+    function Book(name, author, pages, read_status){
         if(!new.target){
             throw new Error("Error! Please re-do action!");
         }
@@ -138,6 +138,22 @@ document.addEventListener("DOMContentLoaded", () => {
             bookRead.value = "Yes";
         }else{
             bookRead.value = "No";
+        }
+
+        if(bookName.validity.valueMissing){
+            bookName.setCustomValidity("Please fill out all the fields!");
+            bookName.reportValidity();
+            return;
+        }
+        if(bookAuthor.validity.valueMissing){
+            bookAuthor.setCustomValidity("Please fill out all the fields!");
+            bookAuthor.reportValidity();
+            return;
+        }
+        if(bookPages.validity.valueMissing){
+            bookPages.setCustomValidity("Please fill out all the fields!");
+            bookPages.reportValidity();
+            return;
         }
 
         /*IF ADD BOOK BUTTON IS CLICKED*/
